@@ -2,9 +2,9 @@ noflo = require "noflo"
 connect = require "connect"
 
 class BasicAuth extends noflo.Component
-  description: """This component receives a HTTP request (req, res)
-  combination on input, and runs the connect.basicAuth middleware
-  for that"""
+  description: "This component receives a HTTP request (req, res)
+combination on input, and runs the connect.basicAuth middleware
+for that"
 
   constructor: ->
     @request = null

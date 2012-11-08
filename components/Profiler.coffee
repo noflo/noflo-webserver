@@ -2,9 +2,9 @@ noflo = require "noflo"
 connect = require "connect"
 
 class Profiler extends noflo.Component
-  description: """This component receives a HTTP request (req, res)
-  combination on on input, and runs the connect.profiler middleware
-  for that"""
+  description: "This component receives a HTTP request (req, res)
+combination on on input, and runs the connect.profiler middleware
+for that"
 
   constructor: ->
     @request = null

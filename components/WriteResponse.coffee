@@ -1,9 +1,9 @@
 noflo = require "noflo"
 
 class WriteResponse extends noflo.Component
-  description: """This component receives a request and a string on the
-  input ports, writes that string to the request's response and forwards
-  the request"""
+  description: "This component receives a request and a string on the
+input ports, writes that string to the request's response and forwards
+the request"
 
   constructor: ->
     @string = ""
