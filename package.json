@@ -1,0 +1,37 @@
+{
+  "name": "noflo-webserver",
+  "description": "Web Server components for the NoFlo flow-based programming environment",
+  "keywords": ["noflo", "connect", "http", "server"],
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "version": "0.0.1",
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://github.com/bergie/noflo/raw/master/LICENSE"
+  }],
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "noflo": "0.1.x",
+    "connect": "2.6.x",
+    "node-uuid": "1.4.x"
+  },
+  "devDependencies": {
+    "nodeunit": ">=0.6.0",
+    "coffeelint": "*",
+    "mocks": "0.0.x"
+  },
+  "noflo": {
+    "components": {
+      "BasicAuth": "./components/BasicAuth.coffee",
+      "Profiler": "./components/Profiler.coffee",
+      "SendResponse": "./components/SendResponse.coffee",
+      "Server": "./components/Server.coffee",
+      "WriteResponse": "./components/WriteResponse.coffee"
+    }
+  },
+  "scripts": {
+    "pretest": "./node_modules/.bin/coffeelint -r components",
+    "test": "./node_modules/.bin/nodeunit test"
+  }
+}
