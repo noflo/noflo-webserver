@@ -12,7 +12,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "0.1.x",
+    "noflo": "0.2.x",
     "connect": "2.6.x",
     "node-uuid": "1.4.x"
   },
