@@ -19,7 +19,8 @@
   "devDependencies": {
     "nodeunit": ">=0.6.0",
     "coffeelint": "*",
-    "mocks": "0.0.x"
+    "mocks": "0.0.x",
+    "coffee-script": "1.4.x"
   },
   "noflo": {
     "components": {
