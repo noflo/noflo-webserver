@@ -3,7 +3,7 @@
   "description": "Web Server components for the NoFlo flow-based programming environment",
   "keywords": ["noflo", "connect", "http", "server"],
   "author": "Henri Bergius <henri.bergius@iki.fi>",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "licenses": [{
     "type": "MIT",
     "url": "https://github.com/bergie/noflo/raw/master/LICENSE"
@@ -12,7 +12,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "0.2.x",
+    "noflo": "0.3.x",
     "connect": "2.6.x",
     "node-uuid": "1.4.x"
   },
