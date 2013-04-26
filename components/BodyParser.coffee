@@ -1,6 +1,5 @@
 noflo = require "noflo"
 connect = require "connect"
-_ = require "underscore"
 
 class BodyParser extends noflo.Component
 
