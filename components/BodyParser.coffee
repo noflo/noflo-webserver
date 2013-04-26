@@ -7,7 +7,7 @@ class BodyParser extends noflo.Component
   description: "This applies connect.bodyParser middleware"
 
   constructor: ->
-    _.bind(@forward, this)
+    @forward = _.bind(@forward, this)
 
     @inPorts =
       in: new noflo.Port()
