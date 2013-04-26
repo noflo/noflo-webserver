@@ -18,7 +18,8 @@ class BodyParser extends noflo.Component
     @inPorts.in.on "disconnect", =>
       { req, res } = @request
 
-      connect.bodyParser() req, res, =>
+      connect.bodyParser() req, res, (e) =>
+        throw e if e?
         @outPorts.out.send(@request)
         @outPorts.out.disconnect()
         @request = null
