@@ -25,6 +25,7 @@
   "noflo": {
     "components": {
       "BasicAuth": "./components/BasicAuth.coffee",
+      "BodyParser": "./components/BodyParser.coffee",
       "Profiler": "./components/Profiler.coffee",
       "SendResponse": "./components/SendResponse.coffee",
       "Server": "./components/Server.coffee",
