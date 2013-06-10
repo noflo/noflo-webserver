@@ -29,7 +29,8 @@
       "Profiler": "./components/Profiler.coffee",
       "SendResponse": "./components/SendResponse.coffee",
       "Server": "./components/Server.coffee",
-      "WriteResponse": "./components/WriteResponse.coffee"
+      "WriteResponse": "./components/WriteResponse.coffee",
+      "WriteHead": "./components/WriteHead.coffee"
     }
   },
   "scripts": {
