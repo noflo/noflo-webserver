@@ -30,7 +30,8 @@
       "SendResponse": "./components/SendResponse.coffee",
       "Server": "./components/Server.coffee",
       "WriteResponse": "./components/WriteResponse.coffee",
-      "WriteHead": "./components/WriteHead.coffee"
+      "WriteHead": "./components/WriteHead.coffee",
+      "Query": "./components/Query.coffee"
     }
   },
   "scripts": {
