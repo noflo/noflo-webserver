@@ -1,4 +1,4 @@
-Web Server components for NoFlo [![Build Status](https://secure.travis-ci.org/bergie/noflo-webserver.png?branch=master)](https://travis-ci.org/bergie/noflo-webserver)
+Web Server components for NoFlo [![Build Status](https://secure.travis-ci.org/noflo/noflo-webserver.png?branch=master)](https://travis-ci.org/noflo/noflo-webserver)
 ===============================
 
 This module provides [NoFlo](http://noflojs.org/) flow-based programming framework components for running connect-based web servers.
