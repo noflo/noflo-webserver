@@ -1,16 +1,23 @@
 {
   "name": "noflo-webserver",
   "description": "Web Server components for the NoFlo flow-based programming environment",
-  "keywords": ["noflo", "connect", "http", "server"],
+  "keywords": [
+    "noflo",
+    "connect",
+    "http",
+    "server"
+  ],
   "author": "Henri Bergius <henri.bergius@iki.fi>",
   "version": "0.0.2",
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/bergie/noflo/raw/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bergie/noflo/raw/master/LICENSE"
+    }
+  ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/noflo/noflo-webserver.git"
+    "type": "git",
+    "url": "https://github.com/noflo/noflo-webserver.git"
   },
   "engines": {
     "node": ">=0.6.0"
@@ -21,10 +28,10 @@
     "node-uuid": "1.4.x"
   },
   "devDependencies": {
-    "nodeunit": ">=0.6.0",
-    "coffeelint": "*",
-    "mocks": "0.0.x",
-    "coffee-script": "1.4.x"
+    "coffeelint": "~0.5.6",
+    "mocha": "~1.12.0",
+    "chai": "~1.7.2",
+    "coffee-script": "~1.6.3"
   },
   "noflo": {
     "components": {
@@ -40,6 +47,6 @@
   },
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "./node_modules/.bin/nodeunit test"
+    "test": "./node_modules/.bin/mocha spec/*.coffee --compilers coffee:coffee-script"
   }
 }
