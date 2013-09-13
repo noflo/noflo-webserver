@@ -14,6 +14,7 @@ for each HTTP request it receives"
       close: new noflo.Port 'int'
     @outPorts =
       request: new noflo.Port 'object'
+      server: new noflo.Port 'object'
       listening: new noflo.Port 'int'
       error: new noflo.Port 'object'
 
@@ -26,6 +27,12 @@ for each HTTP request it receives"
 
   createServer: (port) ->
     server = new http.Server
+    # Pass the server forward if we have the server port attached
+    if @outPorts.server.isAttached()
+      @outPorts.server.beginGroup port
+      @outPorts.server.send server
+      @outPorts.server.endGroup()
+      @outPorts.server.disconnect()
 
     # Handle new requests
     server.on 'request', (req, res) =>
@@ -36,9 +43,9 @@ for each HTTP request it receives"
       delete @servers[port]
       # No more requests to send as the server has closed
       @outPorts.request.disconnect()
-      return unless @outPorts.listening.isAttached()
       # We've also stopped listening to the port
-      @outPorts.listening.disconnect()
+      if @outPorts.listening.isAttached()
+        @outPorts.listening.disconnect()
 
     # Start listening at the designated ports
     server.listen port, (err) =>
@@ -53,9 +60,9 @@ for each HTTP request it receives"
       @servers[port] = server
       # Connect the request port, as we will have HTTP requests coming through
       @outPorts.request.connect()
-      return unless @outPorts.listening.isAttached()
       # Report that we're listening
-      @outPorts.listening.send port
+      if @outPorts.listening.isAttached()
+        @outPorts.listening.send port
 
   sendRequest: (req, res, port) =>
     # Group requests by port number
