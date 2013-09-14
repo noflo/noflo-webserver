@@ -75,5 +75,7 @@ for each HTTP request it receives"
       res: res
     @outPorts.request.endGroup()
     @outPorts.request.endGroup()
+    # End of request
+    @outPorts.request.disconnect()
 
 exports.getComponent = -> new Server
