@@ -9,6 +9,7 @@ for each HTTP request it receives"
 
   constructor: ->
     @servers = {}
+    @connections = {}
     @inPorts =
       listen: new noflo.Port 'int'
       close: new noflo.Port 'int'
@@ -23,7 +24,13 @@ for each HTTP request it receives"
 
     @inPorts.close.on 'data', (data) =>
       return unless @servers[data]
-      @servers[data].close()
+  
+      # Stop accepting requests
+      @servers[data].close =>
+        @handleClosed data
+
+      # Close connections
+      socket.destroy() for socket in @connections[data]
 
   createServer: (port) ->
     server = new http.Server
@@ -34,18 +41,21 @@ for each HTTP request it receives"
       @outPorts.server.endGroup()
       @outPorts.server.disconnect()
 
+    # Keep track of connections to be able to shut down when needed
+    @connections[port] = []
+    server.on 'connection', (socket) =>
+      @connections[port].push socket
+      socket.on 'close', =>
+        return unless @connections[port]
+        @connections[port].splice @connections[port].indexOf(socket), 1
+
     # Handle new requests
     server.on 'request', (req, res) =>
       @sendRequest req, res, port
 
     # Handle server being closed
     server.on 'close', =>
-      delete @servers[port]
-      # No more requests to send as the server has closed
-      @outPorts.request.disconnect()
-      # We've also stopped listening to the port
-      if @outPorts.listening.isAttached()
-        @outPorts.listening.disconnect()
+      @handleClosed port
 
     # Start listening at the designated ports
     server.listen port, (err) =>
@@ -75,5 +85,15 @@ for each HTTP request it receives"
       res: res
     @outPorts.request.endGroup()
     @outPorts.request.endGroup()
+
+  handleClosed: (port) =>
+    return unless @servers[port]
+    delete @servers[port]
+    delete @connections[port]
+    # No more requests to send as the server has closed
+    @outPorts.request.disconnect()
+    # We've also stopped listening to the port
+    if @outPorts.listening.isAttached()
+      @outPorts.listening.disconnect()
 
 exports.getComponent = -> new Server
