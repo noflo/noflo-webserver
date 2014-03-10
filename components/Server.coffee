@@ -30,6 +30,7 @@ for each HTTP request it receives"
         @handleClosed data
 
       # Close connections
+      return unless @connections[@servers[data]]
       socket.destroy() for socket in @connections[data]
 
   createServer: (port) ->
@@ -95,5 +96,15 @@ for each HTTP request it receives"
     # We've also stopped listening to the port
     if @outPorts.listening.isAttached()
       @outPorts.listening.disconnect()
+
+  shutdown: ->
+    Object.keys(@servers).forEach (port) =>
+      # Stop accepting requests
+      @servers[port].close =>
+        @handleClosed port
+
+      # Close connections
+      return unless @connections[@servers[port]]
+      socket.destroy() for socket in @connections[@servers[port]]
 
 exports.getComponent = -> new Server
