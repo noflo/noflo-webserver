@@ -8,7 +8,7 @@
     "server"
   ],
   "author": "Henri Bergius <henri.bergius@iki.fi>",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "licenses": [
     {
       "type": "MIT",
@@ -23,7 +23,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "~0.4.0",
+    "noflo": "~0.5.0",
     "connect": "2.6.x",
     "node-uuid": "1.4.x"
   },
@@ -34,6 +34,7 @@
     "coffee-script": "~1.6.3"
   },
   "noflo": {
+    "icon": "globe",
     "components": {
       "BasicAuth": "./components/BasicAuth.coffee",
       "BodyParser": "./components/BodyParser.coffee",
