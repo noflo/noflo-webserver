@@ -48,6 +48,6 @@
   },
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "./node_modules/.bin/mocha spec/*.coffee --compilers coffee:coffee-script"
+    "test": "./node_modules/.bin/mocha spec/*.coffee --compilers coffee:coffee-script --reporter spec"
   }
 }

@@ -61,7 +61,7 @@ describe 'Server component', ->
           chai.expect(message.statusCode).to.equal 200
           done()
         req.res.end()
-    describe 'when closed', ->
+    describe.skip 'when closed', ->
       it 'should report that it has closed', (done) ->
         @timeout 5000
         disconnects = 0
