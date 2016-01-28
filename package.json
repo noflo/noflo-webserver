@@ -30,7 +30,7 @@
   "devDependencies": {
     "coffeelint": "~0.6.0",
     "mocha": "~1.21.0",
-    "chai": "~1.9.0",
+    "chai": "~3.5.0",
     "coffee-script": "~1.8.0"
   },
   "noflo": {
