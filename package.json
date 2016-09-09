@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "noflo": "~0.5.0",
-    "connect": "2.6.x",
+    "connect": "3.5.0",
     "node-uuid": "1.4.x"
   },
   "devDependencies": {
