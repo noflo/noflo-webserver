@@ -3,6 +3,8 @@ node_js:
 - '4.2'
 services:
 - redis
+before_script:
+- npm install grunt-cli -g
 script: npm test
 deploy:
   provider: npm
