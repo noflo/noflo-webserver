@@ -1,11 +1,8 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "4.2"
 
 services:
   - redis
 
 script: npm test
-
-notifications:
-    irc: "irc.freenode.org#fbp"
