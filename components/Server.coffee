@@ -1,6 +1,6 @@
 noflo = require "noflo"
 http = require "http"
-uuid = require "node-uuid"
+uuid = require "uuid"
 
 class Server extends noflo.Component
   description: "This component receives a port and host, and initializes
@@ -80,7 +80,7 @@ for each HTTP request it receives"
     @outPorts.request.beginGroup port
     # All request/response pairs are coupled with a UUID group so they
     # can be merged back together for writing the response later.
-    @outPorts.request.beginGroup uuid()
+    @outPorts.request.beginGroup uuid.v4()
     @outPorts.request.send
       req: req
       res: res

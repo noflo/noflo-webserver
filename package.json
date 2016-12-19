@@ -18,9 +18,9 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "~0.5.0",
     "connect": "3.5.0",
-    "node-uuid": "1.4.x"
+    "noflo": "~0.5.0",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "coffeelint": "~0.6.0",
