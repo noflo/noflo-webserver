@@ -1,11 +1,16 @@
 language: node_js
 node_js:
-  - "0.10"
-
+- '4.2'
 services:
-  - redis
-
+- redis
+before_script:
+- npm install grunt-cli -g
 script: npm test
-
-notifications:
-    irc: "irc.freenode.org#fbp"
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: RdwOS/8siU1CeLxNNsLhBULIM/geHRF/WxG1YmrtuxQT0msOfXZexzGKJzMJgsHCJeLNrRtTCCbCLEvKBBadaGTuVZLcMpQmigDcfT0fAWqv4Xd+iK3qTsbZxUCCC6pn3KJ+mx+3K+cGWMAerwfOLwKl0b4xTengw+VZpHuUxI8=
+  on:
+    tags: true
+    repo: noflo/noflo-webserver

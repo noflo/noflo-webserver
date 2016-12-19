@@ -8,13 +8,8 @@
     "server"
   ],
   "author": "Henri Bergius <henri.bergius@iki.fi>",
-  "version": "0.0.4",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/bergie/noflo/raw/master/LICENSE"
-    }
-  ],
+  "version": "0.0.3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/noflo/noflo-webserver.git"
@@ -23,31 +18,33 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "~0.5.0",
-    "connect": "2.6.x",
-    "node-uuid": "1.4.x"
+    "connect": "^3.5.0",
+    "noflo": "0.x >= 0.5",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "coffeelint": "~0.6.0",
-    "mocha": "~1.21.0",
-    "chai": "~1.9.0",
-    "coffee-script": "~1.8.0"
+    "chai": "^3.5.0",
+    "coffee-script": "^1.12.1",
+    "grunt": "^1.0.1",
+    "grunt-coffeelint": "^0.0.16",
+    "grunt-mocha-test": "^0.13.2",
+    "grunt-noflo-manifest": "^0.1.12",
+    "mocha": "^3.2.0"
   },
   "noflo": {
     "icon": "globe",
     "components": {
-      "BasicAuth": "./components/BasicAuth.coffee",
-      "BodyParser": "./components/BodyParser.coffee",
-      "Profiler": "./components/Profiler.coffee",
-      "SendResponse": "./components/SendResponse.coffee",
-      "Server": "./components/Server.coffee",
-      "WriteResponse": "./components/WriteResponse.coffee",
-      "WriteHead": "./components/WriteHead.coffee",
-      "Query": "./components/Query.coffee"
+      "BasicAuth": "components/BasicAuth.coffee",
+      "BodyParser": "components/BodyParser.coffee",
+      "Profiler": "components/Profiler.coffee",
+      "Query": "components/Query.coffee",
+      "SendResponse": "components/SendResponse.coffee",
+      "Server": "components/Server.coffee",
+      "WriteHead": "components/WriteHead.coffee",
+      "WriteResponse": "components/WriteResponse.coffee"
     }
   },
   "scripts": {
-    "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "./node_modules/.bin/mocha spec/*.coffee --compilers coffee:coffee-script --reporter spec"
+    "test": "grunt test"
   }
 }
