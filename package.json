@@ -25,7 +25,6 @@
   "devDependencies": {
     "chai": "~1.9.0",
     "coffee-script": "~1.12.1",
-    "coffeelint": "~0.6.0",
     "grunt": "^1.0.1",
     "grunt-coffeelint": "0.0.16",
     "grunt-mocha-test": "^0.13.2",
