@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  - "4.2"
-
+- '4.2'
 services:
-  - redis
-
+- redis
 script: npm test
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: RdwOS/8siU1CeLxNNsLhBULIM/geHRF/WxG1YmrtuxQT0msOfXZexzGKJzMJgsHCJeLNrRtTCCbCLEvKBBadaGTuVZLcMpQmigDcfT0fAWqv4Xd+iK3qTsbZxUCCC6pn3KJ+mx+3K+cGWMAerwfOLwKl0b4xTengw+VZpHuUxI8=
+  on:
+    tags: true
+    repo: noflo/noflo-webserver
