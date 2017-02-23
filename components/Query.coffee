@@ -1,6 +1,8 @@
 noflo = require "noflo"
 connect = require "connect"
 
+# @runtime noflo-nodejs
+
 class Query extends noflo.Component
 
   description: "This applies connect.query middleware"

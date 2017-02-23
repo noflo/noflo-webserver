@@ -1,6 +1,8 @@
 noflo = require "noflo"
 connect = require "connect"
 
+# @runtime noflo-nodejs
+
 class Profiler extends noflo.Component
   description: "This component receives a HTTP request (req, res)
 combination on on input, and runs the connect.profiler middleware

@@ -1,6 +1,8 @@
 noflo = require "noflo"
 connect = require "connect"
 
+# @runtime noflo-nodejs
+
 class BasicAuth extends noflo.Component
   description: "This component receives a HTTP request (req, res)
 combination on input, and runs the connect.basicAuth middleware

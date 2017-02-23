@@ -1,5 +1,7 @@
 noflo = require "noflo"
 
+# @runtime noflo-nodejs
+
 class WriteResponse extends noflo.Component
   description: "This component receives a request and a string on the
 input ports, writes that string to the request's response and forwards

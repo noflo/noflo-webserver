@@ -1,5 +1,7 @@
 noflo = require 'noflo'
 
+# @runtime noflo-nodejs
+
 class WriteHead extends noflo.Component
   description: 'Given a status code and an object containing return headers,
     call `writeHead` on incoming `res`'

@@ -1,5 +1,7 @@
 noflo = require "noflo"
 
+# @runtime noflo-nodejs
+
 class SendResponse extends noflo.Component
   description: "This component receives a HTTP request (req, res, next)
 combination on on input, and runs res.end(), sending the response to

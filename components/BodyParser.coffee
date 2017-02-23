@@ -1,6 +1,8 @@
 noflo = require "noflo"
 connect = require "connect"
 
+# @runtime noflo-nodejs
+
 class BodyParser extends noflo.Component
 
   description: "This applies connect.bodyParser middleware"

@@ -2,6 +2,8 @@ noflo = require "noflo"
 http = require "http"
 uuid = require "uuid"
 
+# @runtime noflo-nodejs
+
 class Server extends noflo.Component
   description: "This component receives a port and host, and initializes
 a HTTP server for that combination. It sends out a request/response pair
