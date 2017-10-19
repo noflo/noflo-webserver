@@ -26,8 +26,6 @@ module.exports = ->
   @loadNpmTasks 'grunt-coffeelint'
 
   # Our local tasks
-  @registerTask 'build', 'Build NoFlo for the chosen target platform', (target = 'all') =>
-
   @registerTask 'test', 'Build NoFlo and run automated tests', (target = 'all') =>
     @task.run 'coffeelint'
     @task.run 'mochaTest'
