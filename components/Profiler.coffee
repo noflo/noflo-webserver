@@ -3,25 +3,19 @@ connect = require "connect"
 
 # @runtime noflo-nodejs
 
-class Profiler extends noflo.Component
-  description: "This component receives a HTTP request (req, res)
-combination on on input, and runs the connect.profiler middleware
-for that"
-
-  constructor: ->
-    @request = null
-
-    @inPorts =
-      in: new noflo.Port()
-    @outPorts =
-      out: new noflo.Port()
-
-    @inPorts.in.on "data", (request) =>
-      @request = request
-    @inPorts.in.on "disconnect", =>
-      connect.profiler() @request.req, @request.res, =>
-        @outPorts.out.send @request
-        @request = null
-        @outPorts.out.disconnect()
-
-exports.getComponent = -> new Profiler
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = "This component receives a HTTP request (req, res)
+    combination on on input, and runs the connect.profiler middleware
+    for that"
+  c.inPorts.add 'in',
+    datatype: 'object'
+  c.outPorts.add 'out',
+    datatype: 'object'
+  c.process (input, output) ->
+    return unless input.hasData 'in'
+    request = input.getData 'in'
+    connect.profiler() request.req, request.res, ->
+      output.sendDone
+        out: request
+    return

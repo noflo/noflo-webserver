@@ -3,26 +3,22 @@ connect = require "connect"
 
 # @runtime noflo-nodejs
 
-class Query extends noflo.Component
-
-  description: "This applies connect.query middleware"
-
-  constructor: ->
-    @inPorts =
-      in: new noflo.Port()
-    @outPorts =
-      out: new noflo.Port()
-
-    @inPorts.in.on "data", (request) =>
-      @request = request
-
-    @inPorts.in.on "disconnect", =>
-      { req, res } = @request
-
-      connect.query() req, res, (e) =>
-        throw e if e?
-        @outPorts.out.send @request
-        @outPorts.out.disconnect()
-        @request = null
-
-exports.getComponent = -> new Query
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = "This applies connect.query middleware"
+  c.inPorts.add 'in',
+    datatype: 'object'
+  c.outPorts.add 'out',
+    datatype: 'object'
+  c.outPorts.add 'error',
+    datatype: 'object'
+  c.process (input, output) ->
+    return unless input.hasData 'in'
+    request = input.getData 'in'
+    connect.query() request.req, request.res, (err) ->
+      if err
+        output.done err
+        return
+      output.sendDone
+        out: request
+    return

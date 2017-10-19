@@ -2,39 +2,30 @@ noflo = require "noflo"
 
 # @runtime noflo-nodejs
 
-class WriteResponse extends noflo.Component
-  description: "This component receives a request and a string on the
-input ports, writes that string to the request's response and forwards
-the request"
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = "This component receives a request and a string on the
+    input ports, writes that string to the request's response and forwards
+    the request"
+  c.inPorts.add 'string',
+    datatype: 'string'
+  c.inPorts.add 'in',
+    datatype: 'object'
+  c.outPorts.add 'out',
+    datatype: 'object'
+  c.process (input, output) ->
+    return unless input.hasData 'in'
+    return unless input.hasStream 'string'
 
-  constructor: ->
-    @string = ""
-    @request = null
+    request = input.getData 'in'
 
-    @inPorts =
-      string: new noflo.Port()
-      in: new noflo.Port()
+    string = ''
+    stream = input.getStream 'in'
+    for packet in 'stream'
+      continue unless packet.type is 'data'
+      string += packet.data
+    request.res.write string
 
-    @outPorts =
-      out: new noflo.Port()
-
-    @inPorts.string.on "connect", =>
-      @string = ""
-    @inPorts.string.on "data", (data) =>
-      @string += data
-    @inPorts.string.on "disconnect", =>
-      @outPorts.out.connect() if @request
-
-    @inPorts.in.on "data", (data) =>
-      @request = data
-    @inPorts.in.on "disconnect", =>
-      @outPorts.out.connect() if @string
-
-    @outPorts.out.on "connect", =>
-      @request.res.write @string
-      @outPorts.out.send @request
-      @request = null
-      @string = null
-      @outPorts.out.disconnect()
-
-exports.getComponent = -> new WriteResponse
+    output.sendDone
+      out: request
+    return
