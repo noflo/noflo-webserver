@@ -28,21 +28,10 @@
     "grunt": "^1.0.1",
     "grunt-coffeelint": "^0.0.16",
     "grunt-mocha-test": "^0.13.2",
-    "grunt-noflo-manifest": "^0.1.12",
     "mocha": "^4.0.0"
   },
   "noflo": {
-    "icon": "globe",
-    "components": {
-      "BasicAuth": "components/BasicAuth.coffee",
-      "BodyParser": "components/BodyParser.coffee",
-      "Profiler": "components/Profiler.coffee",
-      "Query": "components/Query.coffee",
-      "SendResponse": "components/SendResponse.coffee",
-      "Server": "components/Server.coffee",
-      "WriteHead": "components/WriteHead.coffee",
-      "WriteResponse": "components/WriteResponse.coffee"
-    }
+    "icon": "globe"
   },
   "scripts": {
     "test": "grunt test"
