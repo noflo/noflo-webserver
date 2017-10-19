@@ -6,3 +6,5 @@ This module provides [NoFlo](http://noflojs.org/) flow-based programming framewo
 See [this blog post](http://bergie.iki.fi/blog/8998693776/) for an example.
 
 ![NoFlo Web Server](https://s3.eu-central-1.amazonaws.com/bergie-iki-fi/tumblr_lq12x0Sf481qies3uo1_500.png)
+
+For practical needs, the higher-level [noflo-xpress](https://github.com/noflo/noflo-xpress) library is recommended.
