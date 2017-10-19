@@ -2,28 +2,27 @@ noflo = require 'noflo'
 
 # @runtime noflo-nodejs
 
-class WriteHead extends noflo.Component
-  description: 'Given a status code and an object containing return headers,
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = 'Given a status code and an object containing return headers,
     call `writeHead` on incoming `res`'
+  c.inPorts.add 'in',
+    datatype: 'object'
+  c.inPorts.add 'status',
+    datatype: 'int'
+  c.inPorts.add 'headers',
+    datatype: 'object'
+  c.outPorts.add 'out',
+    datatype: 'object'
+  c.process (input, output) ->
+    return unless input.hasData 'in', 'status'
+    return if input.attached('headers').length and not input.hasData 'headers'
+    headers = {}
+    if input.hasData 'headers'
+      headers = inpu.getData 'headers'
+    status = input.getData 'status'
+    request = input.getData 'in'
 
-  constructor: ->
-    @inPorts =
-      in: new noflo.Port()
-      status: new noflo.Port()
-      headers: new noflo.Port()
-    @outPorts =
-      out: new noflo.Port()
-
-    @inPorts.headers.on 'data', (@headers) =>
-    @inPorts.status.on 'data', (@status) =>
-
-    @inPorts.in.on 'data', (request) =>
-      request.res.writeHead @status, @headers if @status?
-      @outPorts.out.send request
-
-    @inPorts.in.on 'disconnect', =>
-      delete @headers
-      delete @status
-      @outPorts.out.disconnect()
-
-exports.getComponent = -> new WriteHead
+    request.res.writeHead status, headers
+    output.sendDone
+      out: request

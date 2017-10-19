@@ -2,22 +2,15 @@ noflo = require "noflo"
 
 # @runtime noflo-nodejs
 
-class SendResponse extends noflo.Component
-  description: "This component receives a HTTP request (req, res, next)
-combination on on input, and runs res.end(), sending the response to
-the user"
-
-  constructor: ->
-    @request = null
-
-    @inPorts =
-      in: new noflo.Port()
-    @outPorts = {}
-
-    @inPorts.in.on "data", (request) =>
-      @request = request
-    @inPorts.in.on "disconnect", =>
-      @request.res.end()
-      @request = null
-
-exports.getComponent = -> new SendResponse
+exports.getComponent = ->
+  c = new noflo.Component
+  c.description = "This component receives a HTTP request (req, res, next)
+    combination on on input, and runs res.end(), sending the response to
+    the user"
+  c.inPorts.add 'in',
+    datatype: 'object'
+  c.process (input, output) ->
+    return unless input.hasData 'in'
+    request = input.getData 'in'
+    request.res.end()
+    output.done()
