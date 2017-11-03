@@ -15,16 +15,16 @@
     "url": "https://github.com/noflo/noflo-webserver.git"
   },
   "engines": {
-    "node": ">=4.2.0"
+    "node": ">=6"
   },
   "dependencies": {
     "connect": "^3.5.0",
-    "noflo": "0.x >= 0.8",
+    "noflo": "^1.0.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^4.0.0",
-    "coffee-script": "^1.12.1",
+    "coffeescript": "^2.0.2",
     "grunt": "^1.0.1",
     "grunt-coffeelint": "^0.0.16",
     "grunt-mocha-test": "^0.13.2",
