@@ -28,7 +28,7 @@
     "grunt": "^1.0.1",
     "grunt-coffeelint": "^0.0.16",
     "grunt-mocha-test": "^0.13.2",
-    "mocha": "^5.0.0"
+    "mocha": "^7.1.0"
   },
   "noflo": {
     "icon": "globe"
