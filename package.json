@@ -20,7 +20,7 @@
   "dependencies": {
     "connect": "^3.5.0",
     "noflo": "^1.0.0",
-    "uuid": "^3.0.1"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "chai": "^4.0.0",
