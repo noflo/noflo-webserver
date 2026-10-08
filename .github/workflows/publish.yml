@@ -43,7 +43,14 @@ jobs:
 
       - name: Publish
         run: |
+          NAME=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
+          # Skip versions already on the registry (the first publish of each
+          # package is done manually before its tag exists)
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "Version $NAME@$VERSION already published, skipping"
+            exit 0
+          fi
           # npm requires an explicit tag for prerelease versions
           case "$VERSION" in
             *-*) npm publish --tag next ;;
