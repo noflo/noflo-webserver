@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Package renamed to @noflo/webserver; the version resets to the 2.x generation (2.0.0-alpha.1) for the fresh package name. Component addressing is unchanged — library IDs derive identically from the scoped name, so component and graph names stay the same. The old noflo-webserver will be deprecated with a pointer once 2.x reaches stable
+
 - Migrated to NoFlo 2.x: components now depend on `@noflo/noflo` ^2.0.0 instead of the unscoped `noflo` 1.x package
 - Package is now plain ESM (`"type": "module"`) with no build step; supported runtime is Node.js >= 22; components also run under Deno and Bun
 - **Breaking**: removed the `webserver/Profiler` component — the `connect.profiler` middleware it used was removed from connect years ago and the component has been broken since
