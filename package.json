@@ -1,7 +1,7 @@
 {
-  "name": "noflo-webserver",
+  "name": "@noflo/webserver",
   "description": "Web server components for NoFlo",
-  "version": "0.2.0",
+  "version": "2.0.0-alpha.1",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi",

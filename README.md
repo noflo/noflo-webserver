@@ -1,4 +1,4 @@
-# noflo-webserver
+# @noflo/webserver
 
 Web Server components for [NoFlo](https://noflojs.org)
 
