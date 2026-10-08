@@ -42,4 +42,10 @@ jobs:
         run: npm test
 
       - name: Publish
-        run: npm publish
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          # npm requires an explicit tag for prerelease versions
+          case "$VERSION" in
+            *-*) npm publish --tag next ;;
+            *) npm publish ;;
+          esac
