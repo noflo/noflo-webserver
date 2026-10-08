@@ -73,13 +73,29 @@ const main = () => {
     changes = true;
   }
   const changelog = readFileSync(changelogPath, "utf8");
-  const unreleased = /## Unreleased\n\n([\s\S]*?)(?=\n## \[|$)/;
-  const body = changelog.match(unreleased)?.[1]?.trim();
+  // Collect the Unreleased segment line-wise: everything after its heading
+  // until the next top-level heading or the end of the file
+  const lines = changelog.split("\n");
+  const start = lines.indexOf("## Unreleased");
+  let end = lines.length;
+  if (start !== -1) {
+    for (let i = start + 1; i < lines.length; i += 1) {
+      if (lines[i].startsWith("## ")) {
+        end = i;
+        break;
+      }
+    }
+  }
+  const body = start === -1 ? "" : lines.slice(start + 1, end).join("\n").trim();
   if (body) {
-    const stamped = changelog.replace(
-      unreleased,
-      `## Unreleased\n\n## [${version}] - ${date}\n\n${body}\n`,
-    );
+    const stamped = [
+      ...lines.slice(0, start + 1),
+      "",
+      `## [${version}] - ${date}`,
+      "",
+      ...lines.slice(start + 1, end),
+      ...lines.slice(end),
+    ].join("\n");
     if (!dryRun) writeFileSync(changelogPath, stamped);
     changes = true;
   }
