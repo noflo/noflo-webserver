@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+## [2.0.0-alpha.1] - 2026-10-08
+
 ### Changed
 
 - Package renamed to @noflo/webserver; the version resets to the 2.x generation (2.0.0-alpha.1) for the fresh package name. Component addressing is unchanged — library IDs derive identically from the scoped name, so component and graph names stay the same. The old noflo-webserver will be deprecated with a pointer once 2.x reaches stable
