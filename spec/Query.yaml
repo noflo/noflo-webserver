@@ -1,0 +1,42 @@
+topic: webserver/Query
+cases:
+  - name: parsing a query string
+    assertion: should populate req.query from the request URL
+    inputs:
+      in:
+        req:
+          url: "/test?hello=world&foo=bar"
+    expect:
+      out:
+        equals:
+          req:
+            url: "/test?hello=world&foo=bar"
+            query:
+              hello: world
+              foo: bar
+  - name: repeated keys become arrays
+    assertion: should collect repeated query keys into arrays
+    inputs:
+      in:
+        req:
+          url: "/test?a=1&a=2&b=3"
+    expect:
+      out:
+        equals:
+          req:
+            url: "/test?a=1&a=2&b=3"
+            query:
+              a: ["1", "2"]
+              b: "3"
+  - name: no query string
+    assertion: should produce an empty query object
+    inputs:
+      in:
+        req:
+          url: "/test"
+    expect:
+      out:
+        equals:
+          req:
+            url: "/test"
+            query: {}

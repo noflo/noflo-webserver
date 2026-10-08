@@ -1,39 +1,54 @@
 {
   "name": "noflo-webserver",
-  "description": "Web Server components for the NoFlo flow-based programming environment",
-  "keywords": [
-    "noflo",
-    "connect",
-    "http",
-    "server"
-  ],
-  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "description": "Web server components for NoFlo",
   "version": "0.2.0",
-  "license": "MIT",
+  "author": {
+    "name": "Henri Bergius",
+    "email": "henri.bergius@iki.fi",
+    "url": "http://bergie.iki.fi"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/noflo/noflo-webserver.git"
+    "url": "git://github.com/noflo/noflo-webserver.git"
   },
+  "license": "MIT",
+  "type": "module",
   "engines": {
-    "node": ">=6"
-  },
-  "dependencies": {
-    "connect": "^3.5.0",
-    "noflo": "^1.0.0",
-    "uuid": "^3.0.1"
-  },
-  "devDependencies": {
-    "chai": "^4.0.0",
-    "coffeescript": "^2.0.2",
-    "grunt": "^1.0.1",
-    "grunt-coffeelint": "^0.0.16",
-    "grunt-mocha-test": "^0.13.2",
-    "mocha": "^5.0.0"
+    "node": ">=22"
   },
   "noflo": {
     "icon": "globe"
   },
+  "keywords": [
+    "noflo"
+  ],
+  "files": [
+    "components/",
+    "test/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@noflo/noflo": "^2.0.0-alpha.0",
+    "body-parser": "^2.3.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@noflo/fbp-spec-runner": "^2.0.0-alpha.0",
+    "@noflo/loader-node": "^2.0.0-alpha.0",
+    "@types/body-parser": "^1.19.6",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  },
   "scripts": {
-    "test": "grunt test"
+    "lint": "npx @biomejs/biome check --use-editorconfig=true components/ spec/ test/",
+    "format": "npx @biomejs/biome check --use-editorconfig=true --write components/ spec/ test/",
+    "types": "tsc -p tsconfig.json",
+    "test": "npm run types && npm run lint && npm run test:spec && npm run test:node",
+    "test:spec": "node \"$(node -p \"require.resolve('@noflo/fbp-spec-runner/src/cli.js')\")\" spec/",
+    "test:node": "node --test test/*.test.js",
+    "test:bun": "bun test test/*.test.js",
+    "test:deno": "deno test --allow-all --no-check test/*.test.js"
   }
 }
