@@ -30,13 +30,13 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@noflo/noflo": "^2.0.0-alpha.0",
+    "@noflo/noflo": "^2.0.0-alpha.2",
     "body-parser": "^2.3.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.0",
-    "@noflo/fbp-spec-runner": "^2.0.0-alpha.0",
-    "@noflo/loader-node": "^2.0.0-alpha.0",
+    "@noflo/fbp-spec-runner": "^2.0.0-alpha.2",
+    "@noflo/loader-node": "^2.0.0-alpha.2",
     "@types/body-parser": "^1.19.6",
     "@types/node": "^24.0.0",
     "typescript": "^5.0.0"
